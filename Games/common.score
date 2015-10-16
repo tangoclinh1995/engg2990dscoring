@@ -1,0 +1,7 @@
+//SQL Field Name, Table Title, Time Penalty per occurence, Max. no. of Occurence [,Time threshold for penalty]
+drag,Drag,5,1000,5
+lane,Leave Lane,5,1
+ceil,Hit Ceiling / Walls,5,1
+airship,Hit Airship,20,1000
+repos,Physical Reposition,5,1000
+damage,Damage,0,3

@@ -1,0 +1,3 @@
+.pure-menu-horizontal, .pure-menu-children { background: #333333; }
+.pure-menu-link { color: white; }
+a.pure-menu-link:hover, a.pure-menu-link:focus { background: #0078e7; }

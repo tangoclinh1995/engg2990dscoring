@@ -1,0 +1,10 @@
+//SQL Field Name, Table Title, Time Penalty per occurence, Max. no. of Occurence [,Time threshold for penalty]
+//Name=[Name of the Game]
+//Time=[Time limit of the Game]
+Name=Round 1: The Dragster
+Time=120
+gate1,Wrong Gate #1,60,1
+gate2,Wrong Gate #2,60,1
+string1,Hit Gate #1,45,1
+string2,Hit Gate #2,45,1
+win,Win Race,-5,1

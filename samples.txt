@@ -1,0 +1,82 @@
+#!/usr/local/bin/php
+
+&#x25B2; (Up triangle) &#x25BE; (Down triangle)
+
+CREATE TABLE game1 (
+ id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT ,
+ team MEDIUMINT UNSIGNED NOT NULL ,
+ players VARCHAR(100) NOT NULL ,
+ race MEDIUMINT UNSIGNED NOT NULL , 
+ lane MEDIUMINT UNSIGNED NOT NULL ,
+ drag MEDIUMINT UNSIGNED NOT NULL ,
+ ceil MEDIUMINT UNSIGNED NOT NULL ,
+ airship MEDIUMINT UNSIGNED NOT NULL ,
+ human MEDIUMINT UNSIGNED NOT NULL ,
+ damage MEDIUMINT UNSIGNED NOT NULL ,
+ gate1 MEDIUMINT UNSIGNED NOT NULL ,
+ gate2 MEDIUMINT UNSIGNED NOT NULL ,
+ string1 MEDIUMINT UNSIGNED NOT NULL ,
+ string2 MEDIUMINT UNSIGNED NOT NULL ,
+ time MEDIUMINT UNSIGNED NOT NULL ,
+ total MEDIUMINT UNSIGNED NOT NULL ,
+ PRIMARY KEY (id) ,
+ INDEX (team) 
+);
+
+
+INSERT INTO gamedb(db,name) VALUES ('game1', 'Hello');
+
+<tr>
+	<td>Drag</td>
+	<td class="penalty penalty-timer">
+		<input type="hidden" class="param-max" value="1000">
+		<input type='hidden' class='param-weight' value='5'>		
+		<input type="hidden" class="param-timerthreshold" value="5">
+		<input type="hidden" class="record" name="drag" value="0">
+
+		<span>0</span>
+		<button type="button" class="pure-button pure-button-primary button-timer">Start</button>&nbsp;&nbsp;&nbsp;
+		<button type="button" class="pure-button button-increase">+</button>
+		<button type="button" class="pure-button button-decrease">-</button>
+	</td>
+</tr>
+
+<tr>
+	<td>Leave Lane</td>
+	<td class="penalty">
+		<input type="hidden" class="param-max" value="1000">
+		<input type="hidden" class="param-weight" value="5">
+		<input type="hidden" class="record" name="lane" value="0">
+
+		<span>0</span>
+		<button type="button" class="pure-button button-increase">+</button>
+		<button type="button" class="pure-button button-decrease">-</button>
+	</td>
+</tr>
+
+
+SELECT team, AVG(total) as avg
+FROM game1
+GROUP BY team
+ORDER BY avg ASC
+
+
+SELECT game1.team, AVG(game1.total) AS game1avg, AVG(game2.total) AS game2avg
+FROM game1 
+INNER JOIN game2
+ON game1.team = game2.team
+GROUP BY game1.team
+
+
+SELECT game1.team AS team, MIN(game1.total) AS game1min, MIN(game2.total) AS game2min,(MIN(game1.total) + MIN(game2.total)) AS total
+FROM game1
+INNER JOIN game2
+ON game1.team = game2.team
+GROUP BY game1.team
+
+SELECT game1.team AS team, MIN(game1.total) AS game1min, MIN(game2.total) AS game2min, (MIN(game1.total) + MIN(game2.total)) AS total
+FROM game1
+INNER JOIN dummy ON dummy.num < 2
+LEFT JOIN game2 ON (dummy.num = 0 AND game1.team = game2.team)
+GROUP BY team
+ORDER BY total ASC

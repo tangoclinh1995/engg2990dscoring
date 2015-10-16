@@ -1,0 +1,9 @@
+//SQL Field Name, Table Title, Time Penalty per occurence, Max. no. of Occurence [,Time threshold for penalty]
+//Name=[Name of the game]
+//Time=[Time limit of the Game]
+Name=Round 2: Blocks
+Time=300
+block5,Miss 50pt block,50,1
+block3,Miss 30pt block,30,1
+block1,Miss 10pt block,10,1
+win,Win Race,-5,1
